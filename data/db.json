@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "name": "Laptops",
+      "display_name": "laptops",
+      "description": "Laptops from all brands",
+      "_id": 1
+    },
+    {
+      "name": "smart phones",
+      "display_name": "smart phones",
+      "description": "smart phones from all brands",
+      "_id": 2
+    }
+  ],
+  "products": [
+    {
+      "name": "Samsung Laptop",
+      "display_name": "Samsung laptop",
+      "description": "Corei7 8GB Ram 500GB HDD ",
+      "category": "laptops",
+      "_id": 1
+    },
+    {
+      "name": "Lenovo Laptop",
+      "display_name": "Lenovo laptop",
+      "description": "Corei5 8GB Ram 500GB HDD ",
+      "category": "laptops",
+      "_id": 2
+    },
+    {
+      "name": "Dell Laptop",
+      "display_name": "Dell laptop",
+      "description": "Corei3 8GB Ram 500GB HDD ",
+      "category": "laptops",
+      "_id": 3
+    },
+    {
+      "name": "samsung note10",
+      "display_name": "samsung note10",
+      "description": "50 inch screen 6 GB Ram 128GB storage",
+      "category": "smart phones",
+      "_id": 4
+    },
+    {
+      "name": "Iphone 12",
+      "display_name": "iphone 12",
+      "description": "50 inch screen 6 GB Ram 128GB storage",
+      "category": "smart phones"
+    },
+    {
+      "name": "samsung note13",
+      "display_name": "samsung note10",
+      "description": "50 inch screen 8 GB Ram 128GB storage",
+      "category": "smart phones",
+      "_id": 5
+    }
+  ]
+}
