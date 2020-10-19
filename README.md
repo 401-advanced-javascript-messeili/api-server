@@ -9,4 +9,4 @@ welcome to this api app please follow these steps to run this app:
 
 [Swagger hub link](https://app.swaggerhub.com/apis/messeili/api-server/0.1)
 
-![img](/assets/app-server.jpg)
+![img](/assets/app-server-2.jpg)
