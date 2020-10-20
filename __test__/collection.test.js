@@ -1,6 +1,7 @@
+'use strict';
+require('@code-fellows/supergoose');
 const productsModel = require('../lib/models/products/products.model.js');
 const categoriesModel = require('../lib/models/categories/categories.model.js');
-const supergoose = require('@code-fellows/supergoose');
 let productObj = {
   name: 'laptops',
   display_name: 'laptops',
@@ -37,7 +38,7 @@ describe('collection Model', () => {
       });
     });
   });
-  it('can get() a category item', () => {
+  it('can get() a category', () => {
     return categoriesModel.create(categoryObj).then((record) => {
       return categoriesModel.get(record._id).then((results) => {
         Object.keys(categoryObj).forEach((key) => {
@@ -48,38 +49,55 @@ describe('collection Model', () => {
   });
   it('can delete() a product item', () => {
     return productsModel.create(productObj).then((record) => {
-       productsModel.delete(record._id).then(() => {
+      return productsModel.delete(record._id).then(() => {
         return productsModel.get(record._id).then((results) => {
-              expect(results[0]).toEqual(undefined);
-            });
-          });
+          expect(results[0]).toEqual(undefined);
+        });
+      });
+    });
+  });
+  it('can delete() a category', () => {
+    return categoriesModel.create(categoryObj).then((record) => {
+      return categoriesModel.delete(record._id).then(() => {
+        return categoriesModel.get(record._id).then((results) => {
+          expect(results).toEqual([]);
+        });
       });
     });
   });
 
-  //   it('can get() a note item', async () => {
-  //     const obj = { text: 'test note', category: 'haveFun' };
-  //     const expected = { text: 'test note', category: 'haveFun' };
-  //     const record = await note.create(obj);
-  //     const noteItem = await note.get(record._id);
-  //     Object.keys(expected).forEach((key) => {
-  //       expect(noteItem[0][key]).toEqual(record[key]);
-  //     });
-  //   });
+  it('can update() a product', () => {
+    let newObj = {
+      name: 'new laptops',
+      display_name: 'new laptops',
+      description: 'this category contain all laptops',
+      category: 'smart phones',
+    };
+    return productsModel.create(productObj).then((record) => {
+      return productsModel.update(record._id, newObj).then(() => {
+        return productsModel.get(record._id).then((results) => {
+          Object.keys(productObj).forEach((key) => {
+            expect(results[0][key]).toEqual(newObj[key]);
+          });
+        });
+      });
+    });
+  });
 
-  //   it('can delete() a note item', async () => {
-  //     const obj = { text: 'test note', category: 'haveFun' };
-  //     const record = await note.create(obj);
-  //     await note.delete(record._id);
-  //     const noteItem = await note.get(record._id);
-  //     expect(noteItem[0]).toEqual(undefined);
-  //   });
-
-  //   it('can update() a note item', async () => {
-  //     const obj = { text: 'test note', category: 'haveFun' };
-  //     const record = await note.create(obj);
-  //     await note.delete(record._id);
-  //     const noteItem = await note.get(record._id);
-  //     expect(noteItem[0]).toEqual(undefined);
-  //   });
+  it('can update() a category', () => {
+    let newObj = {
+      name: 'new laptops',
+      display_name: 'new laptops',
+      description: 'this category contain all laptops',
+    };
+    return categoriesModel.create(categoryObj).then((record) => {
+      return categoriesModel.update(record._id, newObj).then(() => {
+        return categoriesModel.get(record._id).then((results) => {
+          Object.keys(categoryObj).forEach((key) => {
+            expect(results[0][key]).toEqual(newObj[key]);
+          });
+        });
+      });
+    });
+  });
 });

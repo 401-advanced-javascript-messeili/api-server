@@ -8,7 +8,7 @@ const productsModel = require('../lib/models/products/products.model.js');
 //products Routes
 productsRouter.post('/products', (req, res) => {
   productsModel.create(req.body).then((data) => {
-    res.status(200).json(data);
+    res.status(201).json(data);
   });
 });
 productsRouter.get('/products', (req, res) => {

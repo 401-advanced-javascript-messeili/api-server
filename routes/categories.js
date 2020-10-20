@@ -8,7 +8,7 @@ const categoriesModel = require('../lib/models/categories/categories.model.js');
 //Categories routes
 categoriesRouter.post('/categories', (req, res) => {
   categoriesModel.create(req.body).then((data) => {
-    res.status(200).json(data);
+    res.status(201).json(data);
   });
 });
 categoriesRouter.get('/categories', (req, res) => {
