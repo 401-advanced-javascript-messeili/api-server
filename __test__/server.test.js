@@ -55,7 +55,7 @@ describe('api server', () => {
 
   it('can create() a product', () => {
     return mockRequest
-      .post('/api/v2/products')
+      .post('/api/v1/products')
       .send(productObj)
       .then((results) => {
         let record = results.body;
@@ -82,11 +82,11 @@ describe('api server', () => {
 
   it('can get() a product', () => {
     return mockRequest
-      .post('/api/v2/products')
+      .post('/api/v1/products')
       .send(productObj)
       .then((data) => {
         return mockRequest
-          .get(`/api/v2/products/${data.body._id}`)
+          .get(`/api/v1/products/${data.body._id}`)
           .then((record) => {
             expect(record.body.name).toEqual(productObj.name);
             expect(record.status).toBe(200);
@@ -122,11 +122,11 @@ describe('api server', () => {
       category: 'new one',
     };
     return mockRequest
-      .post('/api/v2/products')
+      .post('/api/v1/products')
       .send(productObj)
       .then((data) => {
         return mockRequest
-          .put(`/api/v2/products/${data.body._id}`)
+          .put(`/api/v1/products/${data.body._id}`)
           .send(newObj)
           .then((record) => {
             expect(record.body.name).toEqual(newObj.name);
@@ -155,14 +155,14 @@ describe('api server', () => {
 
   it('can delete() a category', () => {
     return mockRequest
-      .post('/api/v2/products')
+      .post('/api/v1/products')
       .send(productObj)
       .then((data) => {
         return mockRequest
-          .delete(`/api/v2/products/${data.body._id}`)
+          .delete(`/api/v1/products/${data.body._id}`)
           .then(() => {
             return mockRequest
-              .get(`/api/v2/products/${data.body._id}`)
+              .get(`/api/v1/products/${data.body._id}`)
               .then((record) => {
                 expect(record.body).toEqual('');
                 expect(record.status).toBe(200);
