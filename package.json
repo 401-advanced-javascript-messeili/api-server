@@ -8,9 +8,11 @@
     "lib": "lib"
   },
   "scripts": {
-    "start":"node index.js",
+    "start": "node index.js",
     "dev": "nodemon",
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --verbose",
+    "lint": "eslint index.js lib/ __test__/ "
+
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "eslint": "^7.12.0",
     "jest": "^26.5.3",
     "supertest": "^5.0.0"
   }
