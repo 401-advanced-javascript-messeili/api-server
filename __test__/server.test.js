@@ -1,8 +1,8 @@
 'use strict';
 const { server } = require('../lib/server.js');
 require('@code-fellows/supergoose');
-const productsModel = require('../lib/models/products/products.model.js');
-const categoriesModel = require('../lib/models/categories/categories.model.js');
+require('../lib/models/products/products.model.js');
+require('../lib/models/categories/categories.model.js');
 const supergoose = require('@code-fellows/supergoose');
 const mockRequest = supergoose(server);
 
