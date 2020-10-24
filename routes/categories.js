@@ -31,6 +31,15 @@ categoriesRouter.put('/categories/:id', (req, res) => {
     });
   });
 });
+
+categoriesRouter.patch('/categories/:id', (req, res) => {
+  let id = req.params.id;
+  categoriesModel.update(id, req.body).then(() => {
+    categoriesModel.get(id).then((data) => {
+      res.status(200).json(data[0]);
+    });
+  });
+});
 categoriesRouter.delete('/categories/:id', (req, res) => {
   let id = req.params.id;
   categoriesModel.delete(id).then(() => {

@@ -31,6 +31,15 @@ productsRouter.put('/products/:id', (req, res) => {
     });
   });
 });
+
+productsRouter.patch('/products/:id', (req, res) => {
+  let id = req.params.id;
+  productsModel.update(id, req.body).then(() => {
+    productsModel.get(id).then((data) => {
+      res.status(200).json(data[0]);
+    });
+  });
+});
 productsRouter.delete('/products/:id', (req, res) => {
   let id = req.params.id;
   productsModel.delete(id).then(() => {
