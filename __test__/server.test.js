@@ -1,8 +1,8 @@
 'use strict';
 const { server } = require('../lib/server.js');
 require('@code-fellows/supergoose');
-const productsModel = require('../lib/models/products/products.model.js');
-const categoriesModel = require('../lib/models/categories/categories.model.js');
+require('../lib/models/products/products.model.js');
+require('../lib/models/categories/categories.model.js');
 const supergoose = require('@code-fellows/supergoose');
 const mockRequest = supergoose(server);
 
@@ -127,6 +127,47 @@ describe('api server', () => {
       .then((data) => {
         return mockRequest
           .put(`/api/v1/products/${data.body._id}`)
+          .send(newObj)
+          .then((record) => {
+            expect(record.body.name).toEqual(newObj.name);
+            expect(record.status).toBe(200);
+          });
+      });
+  });
+
+  it('can patch() a category', () => {
+    let newObj = {
+      name: 'new category',
+      display_name: 'laptops',
+      description: 'this category contain all laptops',
+    };
+    return mockRequest
+      .post('/api/v1/categories')
+      .send(categoryObj)
+      .then((data) => {
+        return mockRequest
+          .patch(`/api/v1/categories/${data.body._id}`)
+          .send(newObj)
+          .then((record) => {
+            expect(record.body.name).toEqual(newObj.name);
+            expect(record.status).toBe(200);
+          });
+      });
+  });
+
+  it('can patch() a product', () => {
+    let newObj = {
+      name: 'new product',
+      display_name: 'laptops',
+      description: 'this category contain all laptops',
+      category: 'new one',
+    };
+    return mockRequest
+      .post('/api/v1/products')
+      .send(productObj)
+      .then((data) => {
+        return mockRequest
+          .patch(`/api/v1/products/${data.body._id}`)
           .send(newObj)
           .then((record) => {
             expect(record.body.name).toEqual(newObj.name);

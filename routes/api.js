@@ -13,6 +13,7 @@ router.get('/:model', getAllHandler);
 router.get('/:model/:id', getOneHandler);
 router.post('/:model', createHandler);
 router.put('/:model/:id', updateHandler);
+router.patch('/:model/:id', patchHandler);
 router.delete('/:model/:id', deleteHandler);
 
 function getModel(req, res, next) {
@@ -58,6 +59,17 @@ function getOneHandler(req, res, next) {
     .catch(next);
 }
 function updateHandler(req, res, next) {
+  let id = req.params.id;
+  req.model.update(id, req.body).then(() => {
+    req.model
+      .get(id)
+      .then((data) => {
+        res.status(200).json(data[0]);
+      })
+      .catch(next);
+  });
+}
+function patchHandler(req, res, next) {
   let id = req.params.id;
   req.model.update(id, req.body).then(() => {
     req.model
